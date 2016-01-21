@@ -6,9 +6,9 @@
             <name>GarageClock</name>
             <creation-uuid>6e6590d0-685f-4501-a642-52ed59a52c4a</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
+            <c-extensions>c</c-extensions>
             <cpp-extensions/>
-            <header-extensions/>
+            <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
