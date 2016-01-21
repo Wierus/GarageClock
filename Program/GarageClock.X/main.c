@@ -16,7 +16,7 @@
 
 #define IndicatorTimeCA
 
-#define IndicatorTemperatureCA
+#define IndicatorTemperatureCC
 
 #ifdef IndicatorTimeCA
 
