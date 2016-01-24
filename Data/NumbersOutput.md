@@ -93,9 +93,9 @@
     <td align="center">9</td>
   </tr>
   <tr>
+    <td align="center"></td>
     <td align="center">1</td>
     <td align="center">0</td>
-    <td align="center">0.</td>
     <td align="center">0</td>
     <td align="center" rowspan="3">[100; +inf)</td>
     <td align="center" rowspan="3">s</td>
@@ -107,10 +107,10 @@
     <td align="center" colspan="4">...</td>
   </tr>
   <tr>
+    <td align="center"></td>
     <td align="center">1</td>
     <td align="center">2</td>
-    <td align="center">5.</td>
-    <td align="center">0</td>
+    <td align="center">5</td>
   </tr>
 </table>
 
