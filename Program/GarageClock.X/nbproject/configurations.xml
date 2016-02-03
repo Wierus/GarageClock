@@ -27,9 +27,9 @@
       <itemPath>I2C.c</itemPath>
       <itemPath>Math.c</itemPath>
       <itemPath>OneWire.c</itemPath>
-      <itemPath>SeventSegmentDisplay.c</itemPath>
       <itemPath>TaskManager.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>SevenSegmentDisplay.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

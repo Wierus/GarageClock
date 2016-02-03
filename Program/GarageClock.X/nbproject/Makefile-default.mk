@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=DS1307.c DS18B20.c I2C.c Math.c OneWire.c SeventSegmentDisplay.c TaskManager.c main.c
+SOURCEFILES_QUOTED_IF_SPACED=DS1307.c DS18B20.c I2C.c Math.c OneWire.c TaskManager.c main.c SevenSegmentDisplay.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/SeventSegmentDisplay.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/DS1307.p1.d ${OBJECTDIR}/DS18B20.p1.d ${OBJECTDIR}/I2C.p1.d ${OBJECTDIR}/Math.p1.d ${OBJECTDIR}/OneWire.p1.d ${OBJECTDIR}/SeventSegmentDisplay.p1.d ${OBJECTDIR}/TaskManager.p1.d ${OBJECTDIR}/main.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/SevenSegmentDisplay.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/DS1307.p1.d ${OBJECTDIR}/DS18B20.p1.d ${OBJECTDIR}/I2C.p1.d ${OBJECTDIR}/Math.p1.d ${OBJECTDIR}/OneWire.p1.d ${OBJECTDIR}/TaskManager.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/SeventSegmentDisplay.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1
+OBJECTFILES=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/SevenSegmentDisplay.p1
 
 # Source Files
-SOURCEFILES=DS1307.c DS18B20.c I2C.c Math.c OneWire.c SeventSegmentDisplay.c TaskManager.c main.c
+SOURCEFILES=DS1307.c DS18B20.c I2C.c Math.c OneWire.c TaskManager.c main.c SevenSegmentDisplay.c
 
 
 CFLAGS=
@@ -121,14 +121,6 @@ ${OBJECTDIR}/OneWire.p1: OneWire.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/OneWire.d ${OBJECTDIR}/OneWire.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/OneWire.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/SeventSegmentDisplay.p1: SeventSegmentDisplay.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/SeventSegmentDisplay.p1.d 
-	@${RM} ${OBJECTDIR}/SeventSegmentDisplay.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SeventSegmentDisplay.p1  SeventSegmentDisplay.c 
-	@-${MV} ${OBJECTDIR}/SeventSegmentDisplay.d ${OBJECTDIR}/SeventSegmentDisplay.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/SeventSegmentDisplay.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/TaskManager.p1: TaskManager.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/TaskManager.p1.d 
@@ -144,6 +136,14 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/SevenSegmentDisplay.p1: SevenSegmentDisplay.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplay.p1.d 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplay.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SevenSegmentDisplay.p1  SevenSegmentDisplay.c 
+	@-${MV} ${OBJECTDIR}/SevenSegmentDisplay.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplay.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/DS1307.p1: DS1307.c  nbproject/Makefile-${CND_CONF}.mk
@@ -186,14 +186,6 @@ ${OBJECTDIR}/OneWire.p1: OneWire.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/OneWire.d ${OBJECTDIR}/OneWire.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/OneWire.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/SeventSegmentDisplay.p1: SeventSegmentDisplay.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/SeventSegmentDisplay.p1.d 
-	@${RM} ${OBJECTDIR}/SeventSegmentDisplay.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SeventSegmentDisplay.p1  SeventSegmentDisplay.c 
-	@-${MV} ${OBJECTDIR}/SeventSegmentDisplay.d ${OBJECTDIR}/SeventSegmentDisplay.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/SeventSegmentDisplay.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/TaskManager.p1: TaskManager.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/TaskManager.p1.d 
@@ -209,6 +201,14 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/SevenSegmentDisplay.p1: SevenSegmentDisplay.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplay.p1.d 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplay.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SevenSegmentDisplay.p1  SevenSegmentDisplay.c 
+	@-${MV} ${OBJECTDIR}/SevenSegmentDisplay.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplay.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
