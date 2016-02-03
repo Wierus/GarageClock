@@ -78,4 +78,20 @@
  */
 #pragma config DEBUG = OFF
 
+/** Тактовая частота контроллера (Гц).
+ */
+#define F_OSC 20000000.0
+
+/** Коэффициент предделителя для TMR0.
+ */
+#define PRESCALER_RATE (1.0 / 256.0)
+
+/** Длина очереди задач для диспетчера.
+ */
+#define TaskManagerQueueSize 8
+
+/** Тип таймера задач для диспетчера.
+ */
+#define TaskManagerTimerType unsigned short
+
 #endif /* CONFIG_H */

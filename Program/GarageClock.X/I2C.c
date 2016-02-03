@@ -1,3 +1,7 @@
+/** I2C.c
+ * v.1.0
+ */
+
 #include "I2C.h"
 
 void I2CInit() {

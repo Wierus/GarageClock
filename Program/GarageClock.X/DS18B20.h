@@ -1,7 +1,9 @@
+/** DS18B20.h
+ * v.1.1
+ */
+
 #ifndef DS18B20_H
 #define	DS18B20_H
-
-#include "Pins.h"
 
 /** Количество байт в уникальном идентификаторе датчика.
  */
@@ -153,18 +155,33 @@ typedef enum DS18B20ErrorCodes {
     
 } DS18B20ErrorCodes;
 
-/** Заданная разрешающая способность датчика.
+/** Разрешающая способность датчика.
  */
 DS18B20ThermometerResolutions DS18B20DesiredResolution = DS18B20Resolution12Bit;
+
+/** Значение температуры с датчика DS18B20.
+ */
+DS18B20Temperature DS18B20TemperatureValue;
+
+/** Результат выполнения операции ConvertTemperature для датчика DS18B20.
+ */
+DS18B20ErrorCodes DS18B20ResultConvertTemperature = DS18B20PrecencePulseNotDetected;
+
+/** Результат выполнения операции GetTemperature для датчика DS18B20.
+ */
+DS18B20ErrorCodes DS18B20ResultGetTemperature = DS18B20PrecencePulseNotDetected;
+
+/** Флаг, показывающий, что корректное значение температуры уже было получено и сохранено в переменной DS18B20TemperatureValue, которую можно использовать.
+ */
+bit DS18B20TemperatureValueIsCorrect = 0;
 
 /** Отправляет датчику команду "Convert T" для запуска процесса измерения и преобразования температуры.
  * @return DS18B20OperationOK, если команда отправлена успешно.
  * DS18B20PrecencePulseNotDetected, если устройство отсутствует на шине.
  */
-DS18B20ErrorCodes DS18B20ConvertTemperature();
+DS18B20ErrorCodes DS18B20SendConvertTemperature();
 
-/** Получает значение температуры из памяти датчика.
- * @param temperatureValue Возвращаемое значение температуры.
+/** Получает значение температуры из памяти датчика. Значение сохраняется в переменную DS18B20TemperatureValue.
  * @return DS18B20OperationOK, если значение температуры получено успешно.
  * DS18B20PrecencePulseNotDetected, если устройство отсутствует на шине.
  * DS18B20CRCReadError, если произошла ошибка при чтении памяти датчика, контрольная сумма не совпадает.
@@ -174,7 +191,7 @@ DS18B20ErrorCodes DS18B20ConvertTemperature();
  * DS18B20Byte2ReadError, если произошла ошибка при чтении 2-го байта памяти датчика (TH Register or User Byte 1). При этом записываются данные в память датчика (устанавливается разрешающая способность датчика).
  * DS18B20Byte3ReadError, если произошла ошибка при чтении 3-го байта памяти датчика (TH Register or User Byte 2). При этом записываются данные в память датчика (устанавливается разрешающая способность датчика).
  */
-DS18B20ErrorCodes DS18B20GetTemperature(DS18B20Temperature* temperatureValue);
+DS18B20ErrorCodes DS18B20SendGetTemperature();
 
 /** Записывает данные в память датчика (записывает 2, 3 и 4 байты памяти датчика). При этом устанавливается разрешающая способность датчика.
  * @return DS18B20OperationOK, если данные записаны успешно.
@@ -183,9 +200,13 @@ DS18B20ErrorCodes DS18B20GetTemperature(DS18B20Temperature* temperatureValue);
 DS18B20ErrorCodes DS18B20WriteScratchpad();
 
 /** Задает разрешающую способность датчика.
- * Фактически разрешающая способность датчика (если она отличается от заданной) будет установлена только при следующем вызове функции DS18B20GetTemperature.
+ * Фактически разрешающая способность датчика (если она отличается от заданной) будет установлена только при следующем вызове функции DS18B20SendGetTemperature.
  * @param resolution Разрешающая способность датчика.
  */
 void DS18B20SetResolution(DS18B20ThermometerResolutions resolution);
+
+void DS18B20ConvertTemperature();
+
+void DS18B20GetTemperature();
 
 #endif /* DS18B20_H */

@@ -67,6 +67,16 @@
 #define TemperatureHPin          RC0
 #define TemperatureHPinDirection TRISC0
 
+// Маски сегментов индикаторов
+#define SevenSegmentDisplaySAMask 0b00000001
+#define SevenSegmentDisplaySBMask 0b00000010
+#define SevenSegmentDisplaySCMask 0b00000100
+#define SevenSegmentDisplaySDMask 0b00001000
+#define SevenSegmentDisplaySEMask 0b00010000
+#define SevenSegmentDisplaySFMask 0b00100000
+#define SevenSegmentDisplaySGMask 0b01000000
+#define SevenSegmentDisplaySHMask 0b10000000
+
 // Выводы кнопок
 #define ButtonHoursPin            RC5
 #define ButtonHoursPinDirection   TRISC5

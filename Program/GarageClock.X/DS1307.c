@@ -1,3 +1,7 @@
+/** DS1307.c
+ * v.1.0
+ */
+
 #include "DS1307.h"
 #include "Math.h"
 

@@ -14,6 +14,7 @@
       <itemPath>Pins.h</itemPath>
       <itemPath>SevenSegmentDisplay.h</itemPath>
       <itemPath>TaskManager.h</itemPath>
+      <itemPath>SevenSegmentDisplayDS18B20.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,6 +31,7 @@
       <itemPath>TaskManager.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>SevenSegmentDisplay.c</itemPath>
+      <itemPath>SevenSegmentDisplayDS18B20.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -2,6 +2,7 @@
 #include "Delay.h"
 #include "TaskManager.h"
 #include "SevenSegmentDisplay.h"
+#include "SevenSegmentDisplayDS18B20.h"
 #include "Math.h"
 #include "DS1307.h"
 #include "DS18B20.h"
@@ -146,25 +147,9 @@ unsigned short timeNSeconds = 0;
  */
 #define DS18B20Resolution DS18B20Resolution12Bit
 
-/** Результат выполнения операции ConvertTemperature для датчика DS18B20.
+/** Необходимое время удержания кнопки до совершения действия (в единицах T_INT, параметр - в секундах).
  */
-DS18B20ErrorCodes resultDS18B20ConvertTemperature = DS18B20PrecencePulseNotDetected;
-
-/** Результат выполнения операции GetTemperature для датчика DS18B20.
- */
-DS18B20ErrorCodes resultDS18B20GetTemperature = DS18B20PrecencePulseNotDetected;
-
-/** Флаг, показывающий, отображать ли предыдущее значение температуры с датчика DS18B20 при ошибочном чтении.
- */
-bit showDS18B20ValueIfReadError = 0;
-
-/** Значение температуры с датчика DS18B20.
- */
-DS18B20Temperature temperatureDS18B20Value;
-
-/** Необходимое время удержания кнопки до совершения действия (в единицах T_INT).
- */
-#define ButtonPressedTime (TTimer)(0.5 / T_INT) // 0.5 с
+#define ButtonPressedTime GetTaskManagerTimerTime(0.5)
 
 /** Текущее время удержания кнопки "Часы" (в единицах T_INT).
  */
@@ -190,37 +175,37 @@ bit isButtonMinutesPressed = 0;
  */
 bit isButtonCorrectionPressed = 0;
 
-/** Задержка до выполнения задачи DrawIndicatorsTask (в единицах T_INT).
+/** Задержка до выполнения задачи DrawIndicatorsTask (в единицах T_INT, параметр - в секундах).
  */
-#define DrawIndicatorsTaskDelay            (TTimer)( 0.0 / T_INT) //  0.0 с
+#define DrawIndicatorsTaskDelay            GetTaskManagerTimerTime( 0.0)
 
-/** Задержка до выполнения задачи FillIndicatorsTimeTask (в единицах T_INT).
+/** Задержка до выполнения задачи FillIndicatorsTimeTask (в единицах T_INT, параметр - в секундах).
  */
-#define FillIndicatorsTimeTaskDelay        (TTimer)( 0.0 / T_INT) //  0.0 с
+#define FillIndicatorsTimeTaskDelay        GetTaskManagerTimerTime( 0.0)
 
-/** Задержка до выполнения задачи FillIndicatorsTemperatureTask (в единицах T_INT).
+/** Задержка до выполнения задачи FillIndicatorsTemperatureTask (в единицах T_INT, параметр - в секундах).
  */
-#define FillIndicatorsTemperatureTaskDelay (TTimer)( 0.0 / T_INT) //  0.0 с
+#define FillIndicatorsTemperatureTaskDelay GetTaskManagerTimerTime( 0.0)
 
-/** Задержка до выполнения задачи RefreshTimeTask (в единицах T_INT).
+/** Задержка до выполнения задачи RefreshTimeTask (в единицах T_INT, параметр - в секундах).
  */
-#define RefreshTimeTaskDelay               (TTimer)( 1.0 / T_INT) //  1.0 с
+#define RefreshTimeTaskDelay               GetTaskManagerTimerTime( 1.0)
 
-/** Задержка до выполнения задачи RefreshDS18B20Task (в единицах T_INT).
+/** Задержка до выполнения задачи RefreshDS18B20Task (в единицах T_INT, параметр - в секундах).
  */
-#define RefreshDS18B20TaskDelay            (TTimer)(10.0 / T_INT) // 10.0 с
+#define RefreshDS18B20TaskDelay            GetTaskManagerTimerTime(10.0)
 
-/** Задержка до выполнения задачи ConvertTemperatureTask (в единицах T_INT).
+/** Задержка до выполнения задачи ConvertTemperatureTask (в единицах T_INT, параметр - в секундах).
  */
-#define ConvertTemperatureTaskDelay        (TTimer)( 0.0 / T_INT) //  0.0 с
+#define ConvertTemperatureTaskDelay        GetTaskManagerTimerTime( 0.0)
 
-/** Задержка до выполнения задачи GetTemperatureTask (в единицах T_INT).
+/** Задержка до выполнения задачи GetTemperatureTask (в единицах T_INT, параметр - в секундах).
  */
-#define GetTemperatureTaskDelay            (TTimer)( 1.0 / T_INT) //  1.0 с
+#define GetTemperatureTaskDelay            GetTaskManagerTimerTime( 1.0)
 
-/** Задержка до выполнения задачи ScanButtonsTask (в единицах T_INT).
+/** Задержка до выполнения задачи ScanButtonsTask (в единицах T_INT, параметр - в секундах).
  */
-#define ScanButtonsTaskDelay               (TTimer)( 0.0 / T_INT) //  0.0 с
+#define ScanButtonsTaskDelay               GetTaskManagerTimerTime( 0.0)
         
 void IncrementTimeInInterrupt();
 
@@ -432,49 +417,9 @@ void FillIndicatorsTimeAction() {
 }
 
 void FillIndicatorsTemperatureAction() {
-    if (resultDS18B20GetTemperature == DS18B20PrecencePulseNotDetected) {
-        TemperatureSignPin = 0;
-        indicatorTemperatureValues[0] = SymbolLine;
-        indicatorTemperatureValues[1] = SymbolLine;
-        indicatorTemperatureValues[2] = SymbolLine;
-    }
-    else {
-        if (showDS18B20ValueIfReadError) {
-            if (temperatureDS18B20Value.integerPart >= 100) {
-                // [100; +inf)
-                // Формат: s d2 d1 d0
-                TemperatureSignPin = 0;
-                indicatorTemperatureValues[0] = GetIndicatorDigit(GetD2OfU08(temperatureDS18B20Value.integerPart));
-                indicatorTemperatureValues[1] = GetIndicatorDigit(GetD1OfU08(temperatureDS18B20Value.integerPart));
-                indicatorTemperatureValues[2] = GetIndicatorDigit(GetD0OfU08(temperatureDS18B20Value.integerPart));
-            }
-            else if (temperatureDS18B20Value.integerPart >= 10) {
-                // (-inf; -10] и [10; 100)
-                // Формат: s d1 d0. f0
-                TemperatureSignPin = temperatureDS18B20Value.sign;
-                indicatorTemperatureValues[0] = GetIndicatorDigit(GetD1OfU08(temperatureDS18B20Value.integerPart));
-                indicatorTemperatureValues[1] = GetIndicatorDigit(GetD0OfU08(temperatureDS18B20Value.integerPart)) | SymbolDot;
-                indicatorTemperatureValues[2] = GetIndicatorDigit(GetD3OfU16(temperatureDS18B20Value.fractionalPart));
-            }
-            else {
-                // (-10; 0) и [0; 10)
-                // Формат: _ s d0. f0
-                TemperatureSignPin = 0;
-                indicatorTemperatureValues[0] = temperatureDS18B20Value.sign ? SymbolLine : SymbolNull;
-                indicatorTemperatureValues[1] = GetIndicatorDigit(GetD0OfU08(temperatureDS18B20Value.integerPart)) | SymbolDot;
-                indicatorTemperatureValues[2] = GetIndicatorDigit(GetD3OfU16(temperatureDS18B20Value.fractionalPart));
-            }
-        }
-        else {
-            TemperatureSignPin = 0;
-            indicatorTemperatureValues[0] = SymbolLine;
-            indicatorTemperatureValues[1] = SymbolLine;
-            indicatorTemperatureValues[2] = SymbolLine;
-        }
-        if (resultDS18B20GetTemperature != DS18B20OperationOK) {
-            indicatorTemperatureValues[2] |= SymbolDot;
-        }
-    }
+    unsigned char indicatorSign;
+    FillIndicators3AndSignWithDS18B20Temperature(indicatorTemperatureValues, &indicatorSign);
+    TemperatureSignPin = indicatorSign;
 }
 
 void RefreshTimeAction() {
@@ -486,25 +431,11 @@ void RefreshDS18B20Action() {
 }
 
 void ConvertTemperatureAction() {
-    resultDS18B20ConvertTemperature = DS18B20ConvertTemperature();
-    if (resultDS18B20ConvertTemperature == DS18B20PrecencePulseNotDetected) {
-        showDS18B20ValueIfReadError = 0;
-    }
+    DS18B20ConvertTemperature();
 }
 
 void GetTemperatureAction() {
-    if (resultDS18B20ConvertTemperature == DS18B20OperationOK) {
-        resultDS18B20GetTemperature = DS18B20GetTemperature(&temperatureDS18B20Value);
-        if (resultDS18B20GetTemperature == DS18B20OperationOK) {
-            showDS18B20ValueIfReadError = 1;
-        }
-        else if (resultDS18B20GetTemperature == DS18B20PrecencePulseNotDetected) {
-            showDS18B20ValueIfReadError = 0;
-        }
-    }
-    else {
-        resultDS18B20GetTemperature = resultDS18B20ConvertTemperature;
-    }
+    DS18B20GetTemperature();
 }
 
 void ScanButtonsAction() {
