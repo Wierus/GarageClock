@@ -6,6 +6,7 @@
 #include "Math.h"
 #include "DS1307.h"
 #include "DS18B20.h"
+#include "DS18B20Tasks.h"
 
 /** Время свечения одного индикатора времени (мкс).
  */
@@ -191,22 +192,10 @@ bit isButtonCorrectionPressed = 0;
  */
 #define RefreshTimeTaskDelay               GetTaskManagerTimerTime( 1.0)
 
-/** Задержка до выполнения задачи RefreshDS18B20Task (в единицах T_INT, параметр - в секундах).
- */
-#define RefreshDS18B20TaskDelay            GetTaskManagerTimerTime(10.0)
-
-/** Задержка до выполнения задачи ConvertTemperatureTask (в единицах T_INT, параметр - в секундах).
- */
-#define ConvertTemperatureTaskDelay        GetTaskManagerTimerTime( 0.0)
-
-/** Задержка до выполнения задачи GetTemperatureTask (в единицах T_INT, параметр - в секундах).
- */
-#define GetTemperatureTaskDelay            GetTaskManagerTimerTime( 1.0)
-
 /** Задержка до выполнения задачи ScanButtonsTask (в единицах T_INT, параметр - в секундах).
  */
 #define ScanButtonsTaskDelay               GetTaskManagerTimerTime( 0.0)
-        
+
 void IncrementTimeInInterrupt();
 
 void ProcessButtonsInInterrupt();
@@ -322,12 +311,6 @@ void RefreshTimeAction();
 void RefreshDS18B20Task();
 void RefreshDS18B20Action();
 
-void ConvertTemperatureTask();
-void ConvertTemperatureAction();
-
-void GetTemperatureTask();
-void GetTemperatureAction();
-
 void ScanButtonsTask();
 void ScanButtonsAction();
 
@@ -355,17 +338,7 @@ void RefreshTimeTask() {
 
 void RefreshDS18B20Task() {
     RefreshDS18B20Action();
-    AddTask(RefreshDS18B20Task, RefreshDS18B20TaskDelay);
-    AddTask(ConvertTemperatureTask, ConvertTemperatureTaskDelay);
-}
-
-void ConvertTemperatureTask() {
-    ConvertTemperatureAction();
-    AddTask(GetTemperatureTask, GetTemperatureTaskDelay);
-}
-
-void GetTemperatureTask() {
-    GetTemperatureAction();
+    AddTask(DS18B20InitializeSensorTask, DS18B20InitializeSensorTaskDelay);
 }
 
 void ScanButtonsTask() {
@@ -428,14 +401,6 @@ void RefreshTimeAction() {
 }
 
 void RefreshDS18B20Action() {
-}
-
-void ConvertTemperatureAction() {
-    DS18B20ConvertTemperature();
-}
-
-void GetTemperatureAction() {
-    DS18B20GetTemperature();
 }
 
 void ScanButtonsAction() {

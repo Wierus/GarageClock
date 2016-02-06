@@ -15,6 +15,7 @@
       <itemPath>SevenSegmentDisplay.h</itemPath>
       <itemPath>TaskManager.h</itemPath>
       <itemPath>SevenSegmentDisplayDS18B20.h</itemPath>
+      <itemPath>DS18B20Tasks.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -32,6 +33,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>SevenSegmentDisplay.c</itemPath>
       <itemPath>SevenSegmentDisplayDS18B20.c</itemPath>
+      <itemPath>DS18B20Tasks.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -135,7 +137,7 @@
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
         <property key="link-in-peripheral-library" value="true"/>
-        <property key="managed-stack" value="false"/>
+        <property key="managed-stack" value="true"/>
         <property key="opt-xc8-linker-file" value="true"/>
         <property key="opt-xc8-linker-link_startup" value="false"/>
         <property key="opt-xc8-linker-serial" value=""/>
