@@ -1,11 +1,11 @@
 /** DS18B20.c
- * v.1.1
+ * v.1.2
  */
 
 #include "DS18B20.h"
 #include "OneWire.h"
 
-DS18B20ErrorCodes DS18B20SendConvertTemperature() {
+DS18B20ErrorCodes DS18B20SendConvertTCommand() {
     if (OneWireResetPulse() != OneWirePrecencePulse) {
         return DS18B20PrecencePulseNotDetected;
     }
@@ -14,7 +14,7 @@ DS18B20ErrorCodes DS18B20SendConvertTemperature() {
     return DS18B20OperationOK;
 }
 
-DS18B20ErrorCodes DS18B20SendGetTemperature() {
+DS18B20ErrorCodes DS18B20SendReadScratchpadCommand() {
     if (OneWireResetPulse() != OneWirePrecencePulse) {
         return DS18B20PrecencePulseNotDetected;
     }
@@ -73,8 +73,26 @@ void DS18B20SetResolution(DS18B20ThermometerResolutions resolution) {
     DS18B20DesiredResolution = resolution;
 }
 
+void DS18B20InitializeSensor() {
+    DS18B20ResultGetTemperature = DS18B20SendReadScratchpadCommand();
+    switch (DS18B20ResultGetTemperature) {
+        case DS18B20OperationOK:
+        case DS18B20Byte2ReadError:
+        case DS18B20Byte3ReadError:
+        case DS18B20Byte4ReadError: {
+            DS18B20ResultInitializeSensor = DS18B20OperationOK;
+            break;
+        }
+        default: {
+            DS18B20ResultInitializeSensor = DS18B20ResultGetTemperature;
+            break;
+        }
+    }
+    DS18B20TemperatureValueIsCorrect = 0;
+}
+
 void DS18B20ConvertTemperature() {
-    DS18B20ResultConvertTemperature = DS18B20SendConvertTemperature();
+    DS18B20ResultConvertTemperature = DS18B20SendConvertTCommand();
     if (DS18B20ResultConvertTemperature == DS18B20PrecencePulseNotDetected) {
         DS18B20TemperatureValueIsCorrect = 0;
     }
@@ -82,15 +100,16 @@ void DS18B20ConvertTemperature() {
 
 void DS18B20GetTemperature() {
     if (DS18B20ResultConvertTemperature == DS18B20OperationOK) {
-        DS18B20ResultGetTemperature = DS18B20SendGetTemperature();
+        DS18B20ResultGetTemperature = DS18B20SendReadScratchpadCommand();
         if (DS18B20ResultGetTemperature == DS18B20OperationOK) {
             DS18B20TemperatureValueIsCorrect = 1;
         }
-        else if (DS18B20ResultGetTemperature == DS18B20PrecencePulseNotDetected) {
+        else {
             DS18B20TemperatureValueIsCorrect = 0;
         }
     }
     else {
-        DS18B20ResultGetTemperature = DS18B20ResultConvertTemperature;
+        DS18B20ResultGetTemperature = DS18B20ConvertTemperatureError;
+        DS18B20TemperatureValueIsCorrect = 0;
     }
 }
