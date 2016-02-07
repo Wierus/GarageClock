@@ -430,19 +430,17 @@ void ScanButtonsAction() {
 }
 
 void InitOptionReg();
-
 void InitIntConReg();
-
 void InitADCon0Reg();
-
 void InitADCon1Reg();
+void InitTRISEReg();
 
 void InitRegisters() {
     InitOptionReg();
     InitIntConReg();
     InitADCon0Reg();
     InitADCon1Reg();
-    PSPMODE = 0;
+    InitTRISEReg();
 }
 
 void InitOptionReg() {
@@ -604,6 +602,48 @@ void InitADCon1Reg() {
      * ADFM: A/D Result Format Select bit
      * 1 = Right justified. 6 Most Significant bits of ADRESH are read as '0'
      * 0 = Left justified. 6 Least Significant bits of ADRESL are read as '0'
+     */
+}
+
+void InitTRISEReg() {
+    /** TRISE: bit 0
+     * Bit0: Direction Control bit for pin RE0/RD/AN5
+     * 1 = Input
+     * 0 = Output
+     */
+    /** TRISE: bit 1
+     * Bit1: Direction Control bit for pin RE1/WR/AN6
+     * 1 = Input
+     * 0 = Output
+     */
+    /** TRISE: bit 2
+     * Bit2: Direction Control bit for pin RE2/CS/AN7
+     * 1 = Input
+     * 0 = Output
+     */
+    /** TRISE: bit 3
+     * Unimplemented: Read as '0'
+     */
+    /** TRISE: bit 4
+     * PSPMODE: Parallel Slave Port Mode Select bit
+     * 1 = PORTD functions in Parallel Slave Port mode
+     * 0 = PORTD functions in general purpose I/O mode
+     */
+    PSPMODE = 0;
+    /** TRISE: bit 5
+     * IBOV: Input Buffer Overflow Detect bit (in Microprocessor mode)
+     * 1 = A write occurred when a previously input word has not been read (must be cleared in software)
+     * 0 = No overflow occurred
+     */
+    /** TRISE: bit 6
+     * OBF: Output Buffer Full Status bit
+     * 1 = The output buffer still holds a previously written word
+     * 0 = The output buffer has been read
+     */
+    /** TRISE: bit 7
+     * IBF: Input Buffer Full Status bit
+     * 1 = A word has been received and is waiting to be read by the CPU
+     * 0 = No word has been received
      */
 }
 
