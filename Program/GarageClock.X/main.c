@@ -429,13 +429,13 @@ void ScanButtonsAction() {
     }
 }
 
-void InitOptionReg();
-void InitIntConReg();
-void InitADCon0Reg();
-void InitADCon1Reg();
-void InitTRISEReg();
+inline void InitOptionReg();
+inline void InitIntConReg();
+inline void InitADCon0Reg();
+inline void InitADCon1Reg();
+inline void InitTRISEReg();
 
-void InitRegisters() {
+inline void InitRegisters() {
     InitOptionReg();
     InitIntConReg();
     InitADCon0Reg();
@@ -443,7 +443,7 @@ void InitRegisters() {
     InitTRISEReg();
 }
 
-void InitOptionReg() {
+inline void InitOptionReg() {
     /** OPTION_REG: bit 2-0
      * PS<2:0>: Prescaler Rate Select bits
      * BIT VALUE | TMR0 RATE | WDT RATE
@@ -489,7 +489,7 @@ void InitOptionReg() {
     OPTION_REGbits.nRBPU = 1;
 }
 
-void InitIntConReg() {
+inline void InitIntConReg() {
     /** INTCON: bit 0
      * RBIF: RB Port Change Interrupt Flag bit
      * 1 = At least one of the RB7:RB4 pins changed state; a mismatch condition will continue to set the bit. Reading PORTB will end the mismatch condition and allow the bit to be cleared (must be cleared in software)
@@ -537,7 +537,7 @@ void InitIntConReg() {
     INTCONbits.GIE = 0;
 }
 
-void InitADCon0Reg() {
+inline void InitADCon0Reg() {
     /** ADCON0: bit 0
      * ADON: A/D On bit
      * 1 = A/D converter module is operating
@@ -573,7 +573,7 @@ void InitADCon0Reg() {
      */
 }
 
-void InitADCon1Reg() {
+inline void InitADCon1Reg() {
     /** ADCON1: bit 3-0
      * PCFG<3:0>: A/D Port Configuration Control bits
      * PCFG3:PCFG0 | AN7/RE2 | AN6/RE1 | AN5/RE0 | AN4/RA5 | AN3/RA3 | AN2/RA2 | AN1/RA1 | AN0/RA0 | VREF+ | VREF- | CHAN/Refs
@@ -605,7 +605,7 @@ void InitADCon1Reg() {
      */
 }
 
-void InitTRISEReg() {
+inline void InitTRISEReg() {
     /** TRISE: bit 0
      * Bit0: Direction Control bit for pin RE0/RD/AN5
      * 1 = Input
@@ -647,7 +647,7 @@ void InitTRISEReg() {
      */
 }
 
-void InitPins() {
+inline void InitPins() {
     Time1Pin = IndicatorTimeOff;
     Time2Pin = IndicatorTimeOff;
     Time3Pin = IndicatorTimeOff;
