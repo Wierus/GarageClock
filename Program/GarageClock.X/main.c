@@ -178,23 +178,23 @@ bit isButtonCorrectionPressed = 0;
 
 /** Задержка до выполнения задачи DrawIndicatorsTask (в единицах T_INT, параметр - в секундах).
  */
-#define DrawIndicatorsTaskDelay            GetTaskManagerTimerTime( 0.0)
+#define DrawIndicatorsTaskDelay            GetTaskManagerTimerTime(0.0)
 
 /** Задержка до выполнения задачи FillIndicatorsTimeTask (в единицах T_INT, параметр - в секундах).
  */
-#define FillIndicatorsTimeTaskDelay        GetTaskManagerTimerTime( 0.0)
+#define FillIndicatorsTimeTaskDelay        GetTaskManagerTimerTime(0.0)
 
 /** Задержка до выполнения задачи FillIndicatorsTemperatureTask (в единицах T_INT, параметр - в секундах).
  */
-#define FillIndicatorsTemperatureTaskDelay GetTaskManagerTimerTime( 0.0)
+#define FillIndicatorsTemperatureTaskDelay GetTaskManagerTimerTime(0.0)
 
 /** Задержка до выполнения задачи RefreshTimeTask (в единицах T_INT, параметр - в секундах).
  */
-#define RefreshTimeTaskDelay               GetTaskManagerTimerTime( 1.0)
+#define RefreshTimeTaskDelay               GetTaskManagerTimerTime(1.0)
 
 /** Задержка до выполнения задачи ScanButtonsTask (в единицах T_INT, параметр - в секундах).
  */
-#define ScanButtonsTaskDelay               GetTaskManagerTimerTime( 0.0)
+#define ScanButtonsTaskDelay               GetTaskManagerTimerTime(0.0)
 
 void IncrementTimeInInterrupt();
 
@@ -338,7 +338,7 @@ void RefreshTimeTask() {
 
 void RefreshDS18B20Task() {
     RefreshDS18B20Action();
-    AddTask(DS18B20InitializeSensorTask, DS18B20InitializeSensorTaskDelay);
+    AddTask(DS18B20InitializeSensorTask, 0);
 }
 
 void ScanButtonsTask() {

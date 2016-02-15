@@ -1,5 +1,5 @@
 /** DS18B20Tasks.c
- * v.1.0
+ * v.1.2
  */
 
 #include "DS18B20Tasks.h"
@@ -56,4 +56,10 @@ void DS18B20ConvertTemperatureAction() {
 
 void DS18B20GetTemperatureAction() {
     DS18B20GetTemperature();
+}
+
+void DS18B20RemoveAllTasks() {
+    RemoveTask(DS18B20InitializeSensorTask);
+    RemoveTask(DS18B20ConvertTemperatureTask);
+    RemoveTask(DS18B20GetTemperatureTask);
 }
