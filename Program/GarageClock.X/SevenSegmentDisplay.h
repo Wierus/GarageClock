@@ -1,5 +1,5 @@
 /** SevenSegmentDisplay.h
- * v.1.1
+ * v.1.3
  */
 
 #ifndef SEVENSEGMENTDISPLAY_H
@@ -127,21 +127,49 @@ typedef enum IndicatorSymbols {
 
 unsigned char GetIndicatorDigit(unsigned char digit);
 
+void FillIndicators1WithSymbolNull(unsigned char* indicatorValues);
+
+void FillIndicators2WithSymbolNull(unsigned char* indicatorValues);
+
 void FillIndicators3WithSymbolNull(unsigned char* indicatorValues);
 
-/* Выводит символ "Минус" на три семисегментных индикатора.
+void FillIndicators4WithSymbolNull(unsigned char* indicatorValues);
+
+void FillIndicators5WithSymbolNull(unsigned char* indicatorValues);
+
+/* Выводит символ "Минус" на 1 семисегментный индикатор.
+ * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную одному.
+ */
+void FillIndicators1WithSymbolLine(unsigned char* indicatorValues);
+
+/* Выводит символ "Минус" на 2 семисегментных индикатора.
+ * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную двум.
+ */
+void FillIndicators2WithSymbolLine(unsigned char* indicatorValues);
+
+/* Выводит символ "Минус" на 3 семисегментных индикатора.
  * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную трем.
  */
 void FillIndicators3WithSymbolLine(unsigned char* indicatorValues);
 
-/** Выводит число в диапазоне от -99 до 255 с шагом 1 на три семисегментных индикатора.
+/* Выводит символ "Минус" на 4 семисегментных индикатора.
+ * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную четырем.
+ */
+void FillIndicators4WithSymbolLine(unsigned char* indicatorValues);
+
+/* Выводит символ "Минус" на 5 семисегментных индикатора.
+ * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную пяти.
+ */
+void FillIndicators5WithSymbolLine(unsigned char* indicatorValues);
+
+/** Выводит число в диапазоне от -99 до 255 с шагом 1 на 3 семисегментных индикатора.
  * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную трем.
  * @param sign Отрицательный знак числа. 0 - положительное значение или ноль, 1 - отрицательное значение.
  * @param number Модуль выводимого числа в диапазоне от 0 до 255.
  */
 void FillIndicators3WithNumber(unsigned char* indicatorValues, unsigned char sign, unsigned char number);
 
-/** Выводит число в диапазоне от -99.9 до 99.9 с шагом 0.1 или в диапазоне от 100 до 255 с шагом 1 на индикатор символа "минус" и три семисегментных индикатора.
+/** Выводит число в диапазоне от -99.9 до 99.9 с шагом 0.1 или в диапазоне от 100 до 255 с шагом 1 на индикатор символа "минус" и 3 семисегментных индикатора.
  * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную трем.
  * @param indicatorSign Указатель на переменную, в которую будет записано состояние индикатора символа "минус" (включен или выключен).
  * @param sign Отрицательный знак числа. 0 - положительное значение или ноль, 1 - отрицательное значение.
@@ -149,5 +177,13 @@ void FillIndicators3WithNumber(unsigned char* indicatorValues, unsigned char sig
  * @param fractionalPart Дробная часть выводимого числа от 0 до 9.
  */
 void FillIndicators3AndSignWithNumber(unsigned char* indicatorValues, unsigned char* indicatorSign, unsigned char sign, unsigned char number, unsigned char fractionalPart);
+
+/** Выводит число в диапазоне от -99.9 до 255.0 с шагом 0.1 на 4 семисегментных индикатора.
+ * @param indicatorValues Массив, в который будут выведены символы. Массив должен иметь длину равную четырем.
+ * @param sign Отрицательный знак числа. 0 - положительное значение или ноль, 1 - отрицательное значение.
+ * @param number Модуль выводимого числа в диапазоне от 0 до 255 (целая часть).
+ * @param fractionalPart Дробная часть выводимого числа от 0 до 9.
+ */
+void FillIndicators4WithNumber(unsigned char* indicatorValues, unsigned char sign, unsigned char number, unsigned char fractionalPart);
 
 #endif /* SEVENSEGMENTDISPLAY_H */

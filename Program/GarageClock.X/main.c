@@ -178,23 +178,23 @@ bit isButtonCorrectionPressed = 0;
 
 /** Задержка до выполнения задачи DrawIndicatorsTask (в единицах T_INT, параметр - в секундах).
  */
-#define DrawIndicatorsTaskDelay            GetTaskManagerTimerTime( 0.0)
+#define DrawIndicatorsTaskDelay            GetTaskManagerTimerTime(0.0)
 
 /** Задержка до выполнения задачи FillIndicatorsTimeTask (в единицах T_INT, параметр - в секундах).
  */
-#define FillIndicatorsTimeTaskDelay        GetTaskManagerTimerTime( 0.0)
+#define FillIndicatorsTimeTaskDelay        GetTaskManagerTimerTime(0.0)
 
 /** Задержка до выполнения задачи FillIndicatorsTemperatureTask (в единицах T_INT, параметр - в секундах).
  */
-#define FillIndicatorsTemperatureTaskDelay GetTaskManagerTimerTime( 0.0)
+#define FillIndicatorsTemperatureTaskDelay GetTaskManagerTimerTime(0.0)
 
 /** Задержка до выполнения задачи RefreshTimeTask (в единицах T_INT, параметр - в секундах).
  */
-#define RefreshTimeTaskDelay               GetTaskManagerTimerTime( 1.0)
+#define RefreshTimeTaskDelay               GetTaskManagerTimerTime(1.0)
 
 /** Задержка до выполнения задачи ScanButtonsTask (в единицах T_INT, параметр - в секундах).
  */
-#define ScanButtonsTaskDelay               GetTaskManagerTimerTime( 0.0)
+#define ScanButtonsTaskDelay               GetTaskManagerTimerTime(0.0)
 
 void IncrementTimeInInterrupt();
 
@@ -338,7 +338,7 @@ void RefreshTimeTask() {
 
 void RefreshDS18B20Task() {
     RefreshDS18B20Action();
-    AddTask(DS18B20InitializeSensorTask, DS18B20InitializeSensorTaskDelay);
+    AddTask(DS18B20InitializeSensorTask, 0);
 }
 
 void ScanButtonsTask() {
@@ -429,23 +429,21 @@ void ScanButtonsAction() {
     }
 }
 
-void InitOptionReg();
+inline void InitOptionReg();
+inline void InitIntConReg();
+inline void InitADCon0Reg();
+inline void InitADCon1Reg();
+inline void InitTRISEReg();
 
-void InitIntConReg();
-
-void InitADCon0Reg();
-
-void InitADCon1Reg();
-
-void InitRegisters() {
+inline void InitRegisters() {
     InitOptionReg();
     InitIntConReg();
     InitADCon0Reg();
     InitADCon1Reg();
-    PSPMODE = 0;
+    InitTRISEReg();
 }
 
-void InitOptionReg() {
+inline void InitOptionReg() {
     /** OPTION_REG: bit 2-0
      * PS<2:0>: Prescaler Rate Select bits
      * BIT VALUE | TMR0 RATE | WDT RATE
@@ -491,7 +489,7 @@ void InitOptionReg() {
     OPTION_REGbits.nRBPU = 1;
 }
 
-void InitIntConReg() {
+inline void InitIntConReg() {
     /** INTCON: bit 0
      * RBIF: RB Port Change Interrupt Flag bit
      * 1 = At least one of the RB7:RB4 pins changed state; a mismatch condition will continue to set the bit. Reading PORTB will end the mismatch condition and allow the bit to be cleared (must be cleared in software)
@@ -539,7 +537,7 @@ void InitIntConReg() {
     INTCONbits.GIE = 0;
 }
 
-void InitADCon0Reg() {
+inline void InitADCon0Reg() {
     /** ADCON0: bit 0
      * ADON: A/D On bit
      * 1 = A/D converter module is operating
@@ -575,7 +573,7 @@ void InitADCon0Reg() {
      */
 }
 
-void InitADCon1Reg() {
+inline void InitADCon1Reg() {
     /** ADCON1: bit 3-0
      * PCFG<3:0>: A/D Port Configuration Control bits
      * PCFG3:PCFG0 | AN7/RE2 | AN6/RE1 | AN5/RE0 | AN4/RA5 | AN3/RA3 | AN2/RA2 | AN1/RA1 | AN0/RA0 | VREF+ | VREF- | CHAN/Refs
@@ -607,7 +605,49 @@ void InitADCon1Reg() {
      */
 }
 
-void InitPins() {
+inline void InitTRISEReg() {
+    /** TRISE: bit 0
+     * Bit0: Direction Control bit for pin RE0/RD/AN5
+     * 1 = Input
+     * 0 = Output
+     */
+    /** TRISE: bit 1
+     * Bit1: Direction Control bit for pin RE1/WR/AN6
+     * 1 = Input
+     * 0 = Output
+     */
+    /** TRISE: bit 2
+     * Bit2: Direction Control bit for pin RE2/CS/AN7
+     * 1 = Input
+     * 0 = Output
+     */
+    /** TRISE: bit 3
+     * Unimplemented: Read as '0'
+     */
+    /** TRISE: bit 4
+     * PSPMODE: Parallel Slave Port Mode Select bit
+     * 1 = PORTD functions in Parallel Slave Port mode
+     * 0 = PORTD functions in general purpose I/O mode
+     */
+    PSPMODE = 0;
+    /** TRISE: bit 5
+     * IBOV: Input Buffer Overflow Detect bit (in Microprocessor mode)
+     * 1 = A write occurred when a previously input word has not been read (must be cleared in software)
+     * 0 = No overflow occurred
+     */
+    /** TRISE: bit 6
+     * OBF: Output Buffer Full Status bit
+     * 1 = The output buffer still holds a previously written word
+     * 0 = The output buffer has been read
+     */
+    /** TRISE: bit 7
+     * IBF: Input Buffer Full Status bit
+     * 1 = A word has been received and is waiting to be read by the CPU
+     * 0 = No word has been received
+     */
+}
+
+inline void InitPins() {
     Time1Pin = IndicatorTimeOff;
     Time2Pin = IndicatorTimeOff;
     Time3Pin = IndicatorTimeOff;

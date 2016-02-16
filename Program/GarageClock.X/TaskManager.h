@@ -1,5 +1,5 @@
 /** TaskManager.h
- * v.1.2
+ * v.1.4
  */
 
 #ifndef TASKMANAGER_H
@@ -37,6 +37,8 @@ void TaskManager();
 void TimerService();
 
 void AddTask(TPtr pTask, TTimer time);
+
+void RemoveTask(TPtr pTask);
 
 void InitRTOS();
 
