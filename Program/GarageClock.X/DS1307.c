@@ -1,9 +1,8 @@
 /** DS1307.c
- * v.1.0
+ * v.1.1
  */
 
 #include "DS1307.h"
-#include "Math.h"
 
 void DS1307StartClock() {
     unsigned char seconds = DS1307Read(SecondsAddress);

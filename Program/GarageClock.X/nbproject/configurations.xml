@@ -6,16 +6,17 @@
                    projectFiles="true">
       <itemPath>Config.h</itemPath>
       <itemPath>DS1307.h</itemPath>
-      <itemPath>DS18B20.h</itemPath>
       <itemPath>Delay.h</itemPath>
       <itemPath>I2C.h</itemPath>
       <itemPath>Math.h</itemPath>
-      <itemPath>OneWire.h</itemPath>
       <itemPath>Pins.h</itemPath>
       <itemPath>SevenSegmentDisplay.h</itemPath>
       <itemPath>TaskManager.h</itemPath>
-      <itemPath>SevenSegmentDisplayDS18B20.h</itemPath>
-      <itemPath>DS18B20Tasks.h</itemPath>
+      <itemPath>DS18B20Async.h</itemPath>
+      <itemPath>OneWireAsync.h</itemPath>
+      <itemPath>DS18B20.h</itemPath>
+      <itemPath>OneWire.h</itemPath>
+      <itemPath>SevenSegmentDisplayDS18B20Async.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,15 +26,16 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>DS1307.c</itemPath>
-      <itemPath>DS18B20.c</itemPath>
       <itemPath>I2C.c</itemPath>
       <itemPath>Math.c</itemPath>
-      <itemPath>OneWire.c</itemPath>
       <itemPath>TaskManager.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>SevenSegmentDisplay.c</itemPath>
-      <itemPath>SevenSegmentDisplayDS18B20.c</itemPath>
-      <itemPath>DS18B20Tasks.c</itemPath>
+      <itemPath>DS18B20Async.c</itemPath>
+      <itemPath>OneWireAsync.c</itemPath>
+      <itemPath>DS18B20.c</itemPath>
+      <itemPath>OneWire.c</itemPath>
+      <itemPath>SevenSegmentDisplayDS18B20Async.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

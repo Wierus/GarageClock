@@ -1,12 +1,10 @@
 #include "Config.h"
 #include "Delay.h"
-#include "TaskManager.h"
-#include "SevenSegmentDisplay.h"
-#include "SevenSegmentDisplayDS18B20.h"
-#include "Math.h"
 #include "DS1307.h"
-#include "DS18B20.h"
-#include "DS18B20Tasks.h"
+#include "DS18B20Async.h"
+#include "Pins.h"
+#include "SevenSegmentDisplayDS18B20Async.h"
+#include "TaskManager.h"
 
 /** Время свечения одного индикатора времени (мкс).
  */
@@ -338,7 +336,8 @@ void RefreshTimeTask() {
 
 void RefreshDS18B20Task() {
     RefreshDS18B20Action();
-    AddTask(DS18B20InitializeSensorTask, 0);
+    DS18B20CommandStage = DS18B20WriteScratchpadCommandStage;
+    AddTask(DS18B20ResetPulseStageTask, 0);
 }
 
 void ScanButtonsTask() {
