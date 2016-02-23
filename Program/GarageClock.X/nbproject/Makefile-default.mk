@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=DS1307.c DS18B20.c I2C.c Math.c OneWire.c TaskManager.c main.c SevenSegmentDisplay.c SevenSegmentDisplayDS18B20.c DS18B20Tasks.c
+SOURCEFILES_QUOTED_IF_SPACED=DS1307.c I2C.c Math.c TaskManager.c main.c SevenSegmentDisplay.c DS18B20Async.c OneWireAsync.c DS18B20.c OneWire.c SevenSegmentDisplayDS18B20Async.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/SevenSegmentDisplay.p1 ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1 ${OBJECTDIR}/DS18B20Tasks.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/DS1307.p1.d ${OBJECTDIR}/DS18B20.p1.d ${OBJECTDIR}/I2C.p1.d ${OBJECTDIR}/Math.p1.d ${OBJECTDIR}/OneWire.p1.d ${OBJECTDIR}/TaskManager.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d ${OBJECTDIR}/DS18B20Tasks.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/SevenSegmentDisplay.p1 ${OBJECTDIR}/DS18B20Async.p1 ${OBJECTDIR}/OneWireAsync.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/DS1307.p1.d ${OBJECTDIR}/I2C.p1.d ${OBJECTDIR}/Math.p1.d ${OBJECTDIR}/TaskManager.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d ${OBJECTDIR}/DS18B20Async.p1.d ${OBJECTDIR}/OneWireAsync.p1.d ${OBJECTDIR}/DS18B20.p1.d ${OBJECTDIR}/OneWire.p1.d ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/SevenSegmentDisplay.p1 ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1 ${OBJECTDIR}/DS18B20Tasks.p1
+OBJECTFILES=${OBJECTDIR}/DS1307.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/Math.p1 ${OBJECTDIR}/TaskManager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/SevenSegmentDisplay.p1 ${OBJECTDIR}/DS18B20Async.p1 ${OBJECTDIR}/OneWireAsync.p1 ${OBJECTDIR}/DS18B20.p1 ${OBJECTDIR}/OneWire.p1 ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1
 
 # Source Files
-SOURCEFILES=DS1307.c DS18B20.c I2C.c Math.c OneWire.c TaskManager.c main.c SevenSegmentDisplay.c SevenSegmentDisplayDS18B20.c DS18B20Tasks.c
+SOURCEFILES=DS1307.c I2C.c Math.c TaskManager.c main.c SevenSegmentDisplay.c DS18B20Async.c OneWireAsync.c DS18B20.c OneWire.c SevenSegmentDisplayDS18B20Async.c
 
 
 CFLAGS=
@@ -89,14 +89,6 @@ ${OBJECTDIR}/DS1307.p1: DS1307.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/DS1307.d ${OBJECTDIR}/DS1307.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/DS1307.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/DS18B20.p1: DS18B20.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/DS18B20.p1.d 
-	@${RM} ${OBJECTDIR}/DS18B20.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20.p1  DS18B20.c 
-	@-${MV} ${OBJECTDIR}/DS18B20.d ${OBJECTDIR}/DS18B20.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/DS18B20.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/I2C.p1: I2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/I2C.p1.d 
@@ -112,14 +104,6 @@ ${OBJECTDIR}/Math.p1: Math.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/Math.p1  Math.c 
 	@-${MV} ${OBJECTDIR}/Math.d ${OBJECTDIR}/Math.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Math.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/OneWire.p1: OneWire.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/OneWire.p1.d 
-	@${RM} ${OBJECTDIR}/OneWire.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/OneWire.p1  OneWire.c 
-	@-${MV} ${OBJECTDIR}/OneWire.d ${OBJECTDIR}/OneWire.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/OneWire.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/TaskManager.p1: TaskManager.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -145,21 +129,45 @@ ${OBJECTDIR}/SevenSegmentDisplay.p1: SevenSegmentDisplay.c  nbproject/Makefile-$
 	@-${MV} ${OBJECTDIR}/SevenSegmentDisplay.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplay.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1: SevenSegmentDisplayDS18B20.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/DS18B20Async.p1: DS18B20Async.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d 
-	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1  SevenSegmentDisplayDS18B20.c 
-	@-${MV} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.d ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/DS18B20Async.p1.d 
+	@${RM} ${OBJECTDIR}/DS18B20Async.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20Async.p1  DS18B20Async.c 
+	@-${MV} ${OBJECTDIR}/DS18B20Async.d ${OBJECTDIR}/DS18B20Async.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/DS18B20Async.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/DS18B20Tasks.p1: DS18B20Tasks.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/OneWireAsync.p1: OneWireAsync.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/DS18B20Tasks.p1.d 
-	@${RM} ${OBJECTDIR}/DS18B20Tasks.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20Tasks.p1  DS18B20Tasks.c 
-	@-${MV} ${OBJECTDIR}/DS18B20Tasks.d ${OBJECTDIR}/DS18B20Tasks.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/DS18B20Tasks.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/OneWireAsync.p1.d 
+	@${RM} ${OBJECTDIR}/OneWireAsync.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/OneWireAsync.p1  OneWireAsync.c 
+	@-${MV} ${OBJECTDIR}/OneWireAsync.d ${OBJECTDIR}/OneWireAsync.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/OneWireAsync.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/DS18B20.p1: DS18B20.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/DS18B20.p1.d 
+	@${RM} ${OBJECTDIR}/DS18B20.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20.p1  DS18B20.c 
+	@-${MV} ${OBJECTDIR}/DS18B20.d ${OBJECTDIR}/DS18B20.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/DS18B20.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/OneWire.p1: OneWire.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/OneWire.p1.d 
+	@${RM} ${OBJECTDIR}/OneWire.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/OneWire.p1  OneWire.c 
+	@-${MV} ${OBJECTDIR}/OneWire.d ${OBJECTDIR}/OneWire.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/OneWire.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1: SevenSegmentDisplayDS18B20Async.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1  SevenSegmentDisplayDS18B20Async.c 
+	@-${MV} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.d ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/DS1307.p1: DS1307.c  nbproject/Makefile-${CND_CONF}.mk
@@ -169,14 +177,6 @@ ${OBJECTDIR}/DS1307.p1: DS1307.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS1307.p1  DS1307.c 
 	@-${MV} ${OBJECTDIR}/DS1307.d ${OBJECTDIR}/DS1307.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/DS1307.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/DS18B20.p1: DS18B20.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/DS18B20.p1.d 
-	@${RM} ${OBJECTDIR}/DS18B20.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20.p1  DS18B20.c 
-	@-${MV} ${OBJECTDIR}/DS18B20.d ${OBJECTDIR}/DS18B20.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/DS18B20.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/I2C.p1: I2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -193,14 +193,6 @@ ${OBJECTDIR}/Math.p1: Math.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/Math.p1  Math.c 
 	@-${MV} ${OBJECTDIR}/Math.d ${OBJECTDIR}/Math.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Math.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/OneWire.p1: OneWire.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/OneWire.p1.d 
-	@${RM} ${OBJECTDIR}/OneWire.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/OneWire.p1  OneWire.c 
-	@-${MV} ${OBJECTDIR}/OneWire.d ${OBJECTDIR}/OneWire.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/OneWire.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/TaskManager.p1: TaskManager.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -226,21 +218,45 @@ ${OBJECTDIR}/SevenSegmentDisplay.p1: SevenSegmentDisplay.c  nbproject/Makefile-$
 	@-${MV} ${OBJECTDIR}/SevenSegmentDisplay.d ${OBJECTDIR}/SevenSegmentDisplay.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplay.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1: SevenSegmentDisplayDS18B20.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/DS18B20Async.p1: DS18B20Async.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d 
-	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1  SevenSegmentDisplayDS18B20.c 
-	@-${MV} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.d ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplayDS18B20.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/DS18B20Async.p1.d 
+	@${RM} ${OBJECTDIR}/DS18B20Async.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20Async.p1  DS18B20Async.c 
+	@-${MV} ${OBJECTDIR}/DS18B20Async.d ${OBJECTDIR}/DS18B20Async.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/DS18B20Async.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/DS18B20Tasks.p1: DS18B20Tasks.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/OneWireAsync.p1: OneWireAsync.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/DS18B20Tasks.p1.d 
-	@${RM} ${OBJECTDIR}/DS18B20Tasks.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20Tasks.p1  DS18B20Tasks.c 
-	@-${MV} ${OBJECTDIR}/DS18B20Tasks.d ${OBJECTDIR}/DS18B20Tasks.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/DS18B20Tasks.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/OneWireAsync.p1.d 
+	@${RM} ${OBJECTDIR}/OneWireAsync.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/OneWireAsync.p1  OneWireAsync.c 
+	@-${MV} ${OBJECTDIR}/OneWireAsync.d ${OBJECTDIR}/OneWireAsync.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/OneWireAsync.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/DS18B20.p1: DS18B20.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/DS18B20.p1.d 
+	@${RM} ${OBJECTDIR}/DS18B20.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/DS18B20.p1  DS18B20.c 
+	@-${MV} ${OBJECTDIR}/DS18B20.d ${OBJECTDIR}/DS18B20.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/DS18B20.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/OneWire.p1: OneWire.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/OneWire.p1.d 
+	@${RM} ${OBJECTDIR}/OneWire.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/OneWire.p1  OneWire.c 
+	@-${MV} ${OBJECTDIR}/OneWire.d ${OBJECTDIR}/OneWire.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/OneWire.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1: SevenSegmentDisplayDS18B20Async.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d 
+	@${RM} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=pro -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,+file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,+stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1  SevenSegmentDisplayDS18B20Async.c 
+	@-${MV} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.d ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/SevenSegmentDisplayDS18B20Async.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

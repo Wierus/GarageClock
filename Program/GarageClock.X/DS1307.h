@@ -1,11 +1,12 @@
 /** DS1307.h
- * v.1.0
+ * v.1.1
  */
 
 #ifndef DS1307_H
 #define	DS1307_H
 
 #include "I2C.h"
+#include "Math.h"
 
 /** Адреса регистров.
  */
