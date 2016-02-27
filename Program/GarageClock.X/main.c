@@ -3,7 +3,7 @@
 #include "DS1307.h"
 #include "DS18B20Async.h"
 #include "Pins.h"
-#include "SevenSegmentDisplayDS18B20Async.h"
+#include "SevenSegmentDisplayDS18B20.h"
 #include "TaskManager.h"
 
 /** Время свечения одного индикатора времени (мкс).
