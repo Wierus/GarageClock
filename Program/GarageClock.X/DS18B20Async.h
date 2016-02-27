@@ -1,11 +1,11 @@
 /** DS18B20Async.h
- * v.1.0
+ * v.1.5
  */
 
 #ifndef DS18B20ASYNC_H
 #define	DS18B20ASYNC_H
 
-#include "DS18B20.h"
+#include "DS18B20Tasks.h"
 #include "OneWireAsync.h"
 
 /** Содержимое памяти датчика.
@@ -20,22 +20,6 @@ unsigned char DS18B20ScratchpadIndex;
 /** CRC содержимого памяти для проверки правильности чтения.
  */
 unsigned char DS18B20ScratchpadCRC;
-
-/* Период опроса шины в случае отсутствия датчика (в единицах T_INT, параметр - в секундах).
- */
-#define DS18B20PresencePulseNotDetectedDelay   GetTaskManagerTimerTime(1.0)
-
-/** Ожидание до повторного опроса шины в случае ошибки чтения (в единицах T_INT, параметр - в секундах).
- */
-#define DS18B20ReadScratchpadErrorDelay        GetTaskManagerTimerTime(1.0)
-
-/* Ожидание до чтения памяти после запуска процесса измерения и преобразования температуры (в единицах T_INT, параметр - в секундах).
- */
-#define DS18B20ConvertTemperatureDelay         GetTaskManagerTimerTime(1.0)
-
-/* Период обновления температуры датчика при штатной работе и при отсутствии ошибок на шине (в единицах T_INT, параметр - в секундах).
- */
-#define DS18B20ReadScratchpadSuccessfullyDelay GetTaskManagerTimerTime(5.0)
 
 /** Этапы работы с датчиком.
  */
